@@ -15,7 +15,7 @@ function Modal() {
     });
 
     useEffect(() => {
-        if(info[0] == "false"){
+        if(info[0] === "false"){
             setContent({
                 country: info[1], city: info[2], age: info[3], school:info[4], bio: info[5], gender : info[6]
             })

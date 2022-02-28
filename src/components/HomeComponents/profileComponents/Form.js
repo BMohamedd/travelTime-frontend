@@ -20,7 +20,7 @@ function Form() {
         if(editing) {
             setPostData({title: postToEdit.title, discription: postToEdit.body, picture: ""});
         }
-    }, [editing])
+    }, [editing, postToEdit.body, postToEdit.title]);
 
     const clear = () => {
         setPostData({...postData,

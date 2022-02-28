@@ -11,7 +11,7 @@ function UserInfo() {
     const information = useSelector(state => state.personalInfo.postes);
     useEffect(() => {
         dispatch(request());
-    }, [])
+    }, [dispatch])
 
     if (error) return <div class="alert alert-danger" role="alert">{error}</div>;
     if (information[0] === "true") return <FinishAcc />;

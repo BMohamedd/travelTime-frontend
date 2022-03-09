@@ -11,7 +11,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/register/*" element={<Register />} />
-          <Route path="/*" element={<Home />} />
+          <Route path="/forgot-password" element={<h1 className="text-center">this page is under Construction</h1>} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -2,20 +2,23 @@ import React, {useEffect} from 'react';
 import Poste from "./Poste";
 import {requestMyPostes} from "../../../redux/actionCreators/myPostesActionCreator";
 import {useSelector, useDispatch} from "react-redux";
+import Loading from '../Loading';
 
 function Postes() {
   const dispatch = useDispatch();
   const error = useSelector(state => state.mypostes.errorMSG);
   const user = useSelector(state => state.user.user.username);
   const postes = useSelector(state => state.mypostes.postes);
+  const loading = useSelector(state => state.mypostes.loading);
 
   useEffect(() => {
     dispatch(requestMyPostes());  
   }, [dispatch])
 
   if (error) return <div className="alert alert-danger shadow-lg" role="alert">{error}</div>;
+  if (loading) return <Loading />
   if (postes.length === 0) return <div className="alert alert-primary shadow-lg text-center" role="alert">Create a new post to see it here!</div>;
-
+  
   return (
     <div id="my-postes-grid-container">
       {

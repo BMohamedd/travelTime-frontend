@@ -1,6 +1,6 @@
 import {getPostes, likePost, deletePostRequest} from "../api/index";
 import {LOADING_POSTES, POSTES_LOADED, LOADING_ERROR, EDITING_POST, POSTE_DELETED, POST_LIKED, LIKE_POST_STARTING} from "../actions/myPostesActions";
-
+import {BROWSE_POST_LIKED, BROWSE_LIKE_POST_STARTING} from '../actions/browseActions'
 
 export const requestMyPostes = () => async (dispatch, getState) =>  {
     dispatch({type: LOADING_POSTES});
@@ -20,6 +20,7 @@ export const requestMyPostes = () => async (dispatch, getState) =>  {
 }
 
 export const deletePost = (id) => async (dispatch, getState) => {
+    dispatch({type: POSTE_DELETED, payload: id});
 
     const config = {
         headers: {
@@ -28,18 +29,20 @@ export const deletePost = (id) => async (dispatch, getState) => {
     }
 
     try {
-        const {data} = await deletePostRequest(id, config);
-        dispatch({type: POSTE_DELETED, payload: data});
+        await deletePostRequest(id, config);
         dispatch({ type: "STOP_EDITING" });
     } catch (error) {
         console.log(error);
     }
 }
 
-export const likePostAction = (id) => async (dispatch, getState) => {
+export const likePostAction = (id, userId) => async (dispatch, getState) => {
 
-    dispatch({type: LIKE_POST_STARTING, payload: id})
-
+    if(userId) {
+        dispatch({type: BROWSE_LIKE_POST_STARTING, payload: id});
+    }else{
+        dispatch({type: LIKE_POST_STARTING, payload: id})
+    }
     const config = {
         headers: {
             "x-auth-token": getState().user.token
@@ -47,8 +50,12 @@ export const likePostAction = (id) => async (dispatch, getState) => {
     }
 
     try {
-        const {data} = await likePost(id, config);
-        dispatch({type: POST_LIKED, payload: data});
+        const {data} = await likePost(id,userId, config);
+        if(userId) {
+            dispatch({type: BROWSE_POST_LIKED, payload: data});
+        }else{
+            dispatch({type: POST_LIKED, payload: data});
+        }
     } catch (error) {
         console.log({error});
     }

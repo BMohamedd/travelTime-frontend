@@ -45,7 +45,6 @@ function Form() {
        <h2 className="card-title">{editing ? "Edit Post" : "Create a new Post"}</h2>
         <form onSubmit={handleSubmit}>
             <p className='text-danger'>{error}</p>
-            <p>{loading ? "loading...": null}</p>
             <div className="mb-3">
                 <label className="form-label fw-bold">Post Title:</label>
                 <input type="text" maxLength="40" className="form-control" value={postData.title} placeholder="what's on your mind?"  onChange={(e) => setPostData({...postData, title: e.target.value})} required/>

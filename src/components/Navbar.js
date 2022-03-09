@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {LOGOUT_SUCCESS} from "../redux/actions/authAction"
 import {useNavigate} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUser, faDoorClosed } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUser, faDoorClosed, faPlane } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
     <div className="container">
-            <h1 className="navbar-brand"><i className='text-italic'>TravelDay</i></h1 >
+            <h1 className="navbar-brand"><i className='text-italic'> <FontAwesomeIcon icon={faPlane} size='sm' /> TravelDay</i></h1 >
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false">
          <span className="navbar-toggler-icon"></span>
         </button>

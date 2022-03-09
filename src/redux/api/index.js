@@ -11,4 +11,6 @@ export const CheckTokenRequest = (config) => axios.get(`${url}/does-user-exist`,
 export const getPostes = (config) => axios.get(`${url}/my-postes`,config);
 export const requestPersonalInfo = (config) => axios.get(`${url}/get-my-personal-info`,config);
 export const editPersonalInfo = (body , config) => axios.post(`${url}/edit-my-personal-information`, body, config);
-export const likePost = (id, config) => axios.get(`${url}/like/${id}`, config);
+export const likePost = (id, userId, config) => axios.get(`${url}/like/${id}/${userId ? userId: "123"}`, config);
+export const getBrowsePostes = (config) => axios.get(`${url}/request-postes`,config);
+export const getMorePostes = (config, repatedPostes) => axios.post(`${url}/request-postes`,repatedPostes, config);

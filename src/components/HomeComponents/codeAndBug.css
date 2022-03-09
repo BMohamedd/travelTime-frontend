@@ -1,0 +1,14 @@
+#github {
+    color: black;
+    transition: 0.3s;
+}
+#github:hover{
+    color: #AD5c51;
+}
+#bugFix {
+    color: black;
+    transition: 0.3s;
+}
+#bugFix:hover{
+    color: #007bff;
+}

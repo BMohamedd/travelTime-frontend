@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:5000";
+const url = "https://trave-time-back-end.herokuapp.com/";
 
 export const login = (userdata) => axios.post(`${url}/login`, userdata);
 export const register = (userdata) => axios.post(`${url}/register`, userdata);
